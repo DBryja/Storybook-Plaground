@@ -1,29 +1,45 @@
-$easing: cubic-bezier(.51,.92,.24,1.15)  0.3s;
+$easing:cubic-bezier(.51,.92,.24,1.15) 0.2s;
 .bubble-nav{
   display: flex;
   flex-direction: row;
   position: relative;
-  column-gap: 15px;
+
 
   &__item{
     padding: 10px 30px;
-    margin: 0 5px;
     cursor: pointer;
     display: inline-block;
     //border: 2px solid blue;
     border-radius: 25px;
+    position: relative;
+
+    &.active{
+      font-weight: 900;
+      &::after{
+        display: block;
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        width: 30%;
+        transform: translateX(-50%);
+        height: 0.5px;
+        background-color: gray;
+      }
+    }
   }
 
   &__bubble{
     position: absolute;
-    top: 0;
-    left: 50%;
+    //top: 0;
+    //left: 50%;
     width: 0;
     height: 100%;
     border: 0.5px solid white;
     border-radius: 25px;
-    transition:  all $easing, opacity 0.1s;
+    transition:  left $easing, width $easing, top 0.2s ease-in, opacity 0.05s ease-in;
     pointer-events: none;
     opacity: 0;
+    transform-origin: center;
   }
 }
