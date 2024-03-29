@@ -1,12 +1,10 @@
 "use client"
 import React, {useRef,useEffect} from "react";
-import classnames from "classnames";
 
 interface CodeInputProps {
     buildList: (number|string)[];
 }
 const regularExpression = /^[a-zA-Z0-9`~!@#$%^&*()-_=+[{\]}\\|;:'",<.>/? ]$/;
-const inputClassName = classnames("text-white w-8 h-12 bg-[#292c2e] border-radius-2 border border-white text-center focus:outline-dashed focus:outline-2 focus:outline-offset-2 rounded-lg transition-all");
 
 export default function CodeInput({buildList}: CodeInputProps) {
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -157,7 +155,7 @@ export default function CodeInput({buildList}: CodeInputProps) {
                             inputsArray.push(
                                 <input key={indexOfInput}
                                        type={"text"}
-                                       className={inputClassName}
+                                       className={"text-white w-8 h-12 bg-[#292c2e] border-radius-2 border border-white text-center focus:outline-dashed focus:outline-2 focus:outline-offset-2 rounded-lg transition-all"}
                                        maxLength={1}
                                        ref={el => {inputRefs.current.push(el)}}
                                        onKeyDown={handleKeyDown(indexOfInput)}
