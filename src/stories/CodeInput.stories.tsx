@@ -4,7 +4,10 @@ import CodeInput from '../app/components/CodeInput';
 
 const meta = {
     title: "CodeInput",
-    component: CodeInput
+    component: CodeInput,
+    parameters: {
+        layout: 'centered',
+    },
 } satisfies Meta<typeof CodeInput>;
 
 export default meta;
