@@ -1,0 +1,111 @@
+$light-star-rgb: rgb(249 181 51);
+$dark-star-rgb: rgb(215 147 23);
+
+$primary-stripe-rgb: rgb(230 230 230);
+$secondary-stripe-rgb: rgb(240 240 240);
+
+.mario-background {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5fr 2fr;
+  overflow: hidden;
+
+  .star-container{
+    width: 100%;
+    height: 100%;
+    background: radial-gradient($light-star-rgb, $dark-star-rgb);
+    overflow: hidden;
+    position: relative;
+
+    &__pattern{
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      translate: -50% 0;
+      //first url is used for storybook, second for the app
+      background: url(/star-pattern.svg), url(/public/star-pattern.svg);
+      background-size: 10%;
+      opacity: 0.1;
+      min-width: 1200px;
+      animation: pan 180s linear infinite;
+      will-change: background-position;
+    }
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.9;
+      z-index: 2;
+      background: radial-gradient(circle, transparent 75%, $dark-star-rgb);
+    }
+  }
+
+  .stripe-container {
+    margin-top: -50px;
+    position: relative;
+    left: 50%;
+    z-index: 3;
+    width: 100%;
+    height: 110%;
+    translate: -50% 0;
+    min-width: 2000px;
+    background-color: $primary-stripe-rgb;
+    clip-path: polygon(
+                    0% 5%, 1.25% 0%, 2.5% 5%,
+                    3.75% 0%, 5% 5%, 6.25% 0%,
+                    7.5% 5%, 8.75% 0%, 10% 5%,
+                    11.25% 0%, 12.5% 5%, 13.75% 0%,
+                    15% 5%, 16.25% 0%, 17.5% 5%,
+                    18.75% 0%, 20% 5%, 21.25% 0%,
+                    22.5% 5%, 23.75% 0%, 25% 5%,
+                    26.25% 0%, 27.5% 5%, 28.75% 0%,
+                    30% 5%, 31.25% 0%, 32.5% 5%,
+                    33.75% 0%, 35% 5%, 36.25% 0%,
+                    37.5% 5%, 38.75% 0%, 40% 5%,
+                    41.25% 0%, 42.5% 5%, 43.75% 0%,
+                    45% 5%, 46.25% 0%, 47.5% 5%,
+                    48.75% 0%, 50% 5%, 51.25% 0%,
+                    52.5% 5%, 53.75% 0%, 55% 5%,
+                    56.25% 0%, 57.5% 5%, 58.75% 0%,
+                    60% 5%, 61.25% 0%, 62.5% 5%,
+                    63.75% 0%, 65% 5%, 66.25% 0%,
+                    67.5% 5%, 68.75% 0%, 70% 5%,
+                    71.25% 0%, 72.5% 5%, 73.75% 0%,
+                    75% 5%, 76.25% 0%, 77.5% 5%,
+                    78.75% 0%, 80% 5%, 81.25% 0%,
+                    82.5% 5%, 83.75% 0%, 85% 5%,
+                    86.25% 0%, 87.5% 5%, 88.75% 0%,
+                    90% 5%, 91.25% 0%, 92.5% 5%,
+                    93.75% 0%, 95% 5%, 96.25% 0%,
+                    97.5% 5%, 98.75% 0%, 100% 5%,
+                    100% 100%, 0% 100%);
+    &__pattern {
+      height: 100%;
+      width: 100%;
+      background-size: 36px 36px;
+      background-image: linear-gradient(
+                      -45deg,
+                      $primary-stripe-rgb 25%,
+                      $secondary-stripe-rgb 25%,
+                      $secondary-stripe-rgb 50%,
+                      $primary-stripe-rgb 50%,
+                      $primary-stripe-rgb 75%,
+                      $secondary-stripe-rgb 75%,
+                      $secondary-stripe-rgb 100%,
+      );
+      box-shadow: inset 0 0.5rem 2rem 0.25rem rgb(0 0 0 / 40%);
+      animation: pan 360s linear infinite;
+    }
+  }
+}
+
+@keyframes pan {
+  from {background-position: 0 0}
+  to {background-position: 100% 0}
+}
