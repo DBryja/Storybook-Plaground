@@ -168,7 +168,7 @@ export default function CodeInput({buildList}: CodeInputProps) {
             })}
         </form>
         <button className={"px-12 py-2 border rounded-[50px] bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500"} onClick={()=>alert(concatResult())}>Submit</button>
-        <button className={"relative after:block after:absolute after:w-1/2 after:top-[120%] after:left-1/2 after:-translate-x-1/2 after:h-0.5 after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:ease-in-out"}><a href={"https://github.com/DBryja"}>Code by Dawid Bryja</a></button>
+        <button className={"relative after:block after:absolute after:w-1/2 after:top-[120%] after:left-1/2 after:-translate-x-1/2 after:h-0.5 after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:ease-in-out"}><a href={"https://github.com/DBryja/Storybook-Plaground/blob/master/src/app/components/CodeInput.tsx"}>Code by Dawid Bryja</a></button>
     </section>
     );
 }
