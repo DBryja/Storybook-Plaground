@@ -1,0 +1,73 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-nav {
+  background-color: white;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 32px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &__logo {
+    cursor: pointer;
+    padding-top: 0;
+    transition: padding 300ms ease-in-out;
+    position: relative;
+  }
+
+  &__pointer {
+    position: absolute;
+    right: -100%;
+    top: 106px;
+    transition: top cubic-bezier(.51,.92,.24,1.15) 300ms, right 150ms ease-out;
+    opacity: 1;
+  }
+  &__items.active ~ &__pointer {
+    opacity: 1;
+    right: 0;
+  }
+
+  &__items {
+    @include flexCenter;
+    visibility: hidden;
+    opacity: 0;
+    transform: scaleY(0);
+    max-height: 0;
+    margin: 0;
+    flex-direction: column;
+    gap: 24px;
+
+    transition: max-height 300ms cubic-bezier(.51,.92,.24,1.15),
+    margin 300ms cubic-bezier(.51,.92,.24,1.15),
+    scaleY 300ms cubic-bezier(.51,.92,.24,1.15);
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      margin: 32px 0 24px 0;
+      max-height: 300px;
+      transform: scaleY(1);
+
+        .logo-nav__item {
+            opacity: 1;
+        }
+    }
+  }
+  &__item {
+    @include flexCenter;
+    opacity: 0;
+    transition: opacity 150ms ease-in-out 300ms;
+    a {
+      @include flexCenter;
+    }
+  }
+}

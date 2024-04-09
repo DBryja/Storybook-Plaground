@@ -10,7 +10,7 @@ const menuItems = [
 const active = 2;
 
 const meta = {
-    title: 'Minimalist/Nav',
+    title: 'Minimalist/BubbleNav',
     component: BubbleNav,
     parameters: {
         layout: 'centered',
