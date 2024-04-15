@@ -19,6 +19,7 @@ export default function CodeInput({buildList}: CodeInputProps) {
 
         return () => {
             window.removeEventListener("keydown", globalKeyDown);
+            window.removeEventListener("paste", handlePaste);
         }
     }, []);
 
@@ -122,7 +123,7 @@ export default function CodeInput({buildList}: CodeInputProps) {
     }
     // Fill inputs on paste
     // I assumed that the pasted data is a string of characters with no separators, if there were any then split logic should be adjusted
-    function handlePaste(this: Window, e: ClipboardEvent): any {
+    function handlePaste(this: Window, e: ClipboardEvent) {
         e.preventDefault();
         if (!e.clipboardData) return;
         const paste = e.clipboardData.getData("text");
