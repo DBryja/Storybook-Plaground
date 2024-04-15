@@ -1,13 +1,23 @@
+body{
+  font-size: 16px;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0 !important;
+}
+
 .section{
-  width: clamp(300px, 100%, 1000px);
-  height: 800px;
+  width: clamp(300px, 100%, 1200px);
+  aspect-ratio: 1.5;
   //background: #7681a4;
   border-radius: 50px;
   position: relative;
+  @media (max-width: 480px){
+    aspect-ratio: 0.9;
+  }
 }
 
 .slide-title{
-  font-size: 10rem;
+  font-size: clamp(3rem, 10vw, 10rem);
   font-weight: 700;
   color: #fff;
   text-align: left;
@@ -16,11 +26,11 @@
   display: inline-block;
   position: absolute;
   z-index: 10;
-  opacity: 0.8;
+  //opacity: 0.8;
 
   &--left{
     text-align: left;
-    left: 0;
+    left: 25px;
   }
   &--center{
     text-align: center;
@@ -28,13 +38,18 @@
   }
   &--right{
     text-align: right;
-    right: 0;
+    right: 25px;
   }
   &--top{
     top: 0;
+    transform: translateY(-50%)
   }
   &--bottom{
-    bottom: 0;
+    top: 100%;
+    transform: translateY(-50%)
+  }
+  &--behind{
+    z-index: 1;
   }
 }
 
@@ -46,36 +61,55 @@
     background: #8080e8;
     border-radius: 50px;
     position: relative;
-    overflow: hidden;
+    //overflow: hidden;
+    box-shadow: rgba(67, 67, 148, 0.5) 0 0 32px 10px;
   }
 
   &__item{
-    width: 300px;
-    height: 700px;
     border-radius: 25px;
     position: absolute;
+    transform: translateX(-50%) scaleX(1);
+    box-shadow: rgba(67, 67, 148, 0.5) 0 0 32px 10px;
 
     &--left{
-      width: 300px;
-      height: 600px;
+      width: 27%;
+      aspect-ratio: 0.53;
       //background: #f8684f;
       background-image: linear-gradient(to right, #ad351e, #f8684f);
-      left: 10%;
-      top: 35%;
+      left: 18%;
+      top: 30%;
+      transform: translateX(-50%) scaleX(1) skew(1deg);
+      @media (max-width: 480px){
+        left: 12%;
+        width: 35%;
+        top: 45%;
+        transform: translateX(-50%) scaleX(1) skew(2deg);
+      }
     }
     &--center{
-      width: 400px;
-      height: 700px;
-      background: #f8bd4f;
-      left: 35%;
-      top: 7%;
+      width: 33%;
+      aspect-ratio: 0.5;
+      //height: 700px;
+      left: 50%;
+      top: 5%;
+      background-image: radial-gradient(circle, #f1bf61, #ffa90a);
+      @media (max-width: 480px){
+        width: 45%;
+        top: 15%;
+      }
     }
     &--right{
-      width: 350px;
-      height: 600px;
+      width: 27%;
+      aspect-ratio: 0.5;
       background-image: linear-gradient(to left, #1fa475, #4ff8bd);
-      left: 58%;
-      top: 22%;
+      left: 83%;
+      top: 17%;
+      transform: translateX(-50%) scaleX(1) skew(-1deg);
+      @media (max-width: 480px){
+        width: 35%;
+        top: 22%;
+        transform: translateX(-50%) scaleX(1) skew(-2deg);
+      }
     }
   }
 }
