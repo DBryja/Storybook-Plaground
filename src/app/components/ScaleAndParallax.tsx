@@ -69,7 +69,7 @@ export default function ScaleAndParallax(){
                         scrub: 1.5,
                         start: "top center",
                         end: "bottom center",
-                        markers: true
+                        // markers: true
                     }
                 }).fromTo(item, {yPercent: 1 * offset}, {yPercent: -1 * offset});
             }); //end items loop
