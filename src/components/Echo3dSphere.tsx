@@ -74,7 +74,7 @@ function SphereText() {
         const alphaContext = alphaCanvas.getContext("2d")!;
 
         const img = new Image();
-        img.src = '/echo-sphere-square.png';
+        img.src = '/EchoSphere/echo-sphere-square.png';
         const canvasTexture = new THREE.CanvasTexture(canvas);
         const alphaCanvasTexture = new THREE.CanvasTexture(alphaCanvas);
 
@@ -111,7 +111,7 @@ function SphereText() {
     return (
         <>
             <mesh ref={meshRef}>
-                <sphereGeometry args={[1.001, 64, 64]} />
+                <sphereGeometry args={[1.05, 64, 64]} />
                 <meshPhysicalMaterial
                     color="white"
                     metalness={1}
