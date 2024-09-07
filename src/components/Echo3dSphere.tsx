@@ -16,7 +16,7 @@ interface SphereProps {
     clearcoat?: number;
     clearcoatRoughness?: number;
     transmission?: number;
-    env: "apartment" | "city" | "dawn" | "forest" | "lobby" | "night" | "park" | "studio" | "sunset" | "warehouse"|undefined;
+    env: "apartment" | "city" | "dawn" | "forest" | "lobby" | "night" | "park" | "studio" | "sunset" | "warehouse";
 }
 
 const Sphere:React.FC<SphereProps> = ({ color, metalness, roughness, emissive, emissiveIntensity, clearcoat, clearcoatRoughness, transmission }:SphereProps) => {
