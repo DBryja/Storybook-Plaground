@@ -1,9 +1,10 @@
 "use client"
 
 import { Canvas, useFrame, useLoader } from "@react-three/fiber"
-import { OrbitControls } from "@react-three/drei"
+import {Environment, OrbitControls} from "@react-three/drei"
 import { useRef, useMemo } from "react"
 import * as THREE from "three"
+import { FlakesTexture } from 'three/addons/textures/FlakesTexture.js';
 
 
 interface SphereProps {
@@ -15,35 +16,43 @@ interface SphereProps {
     clearcoat?: number;
     clearcoatRoughness?: number;
     transmission?: number;
+    env: "apartment" | "city" | "dawn" | "forest" | "lobby" | "night" | "park" | "studio" | "sunset" | "warehouse"|undefined;
 }
 
-const Sphere:React.FC<SphereProps> = ({
-                                                color = '#FF4820',
-                                                metalness = 1,
-                                                roughness = 0.5,
-                                                emissive = '#FF4820',
-                                                emissiveIntensity = 0.5,
-                                                clearcoat = 1,
-                                                clearcoatRoughness = 0.1,
-                                                transmission = 0.3,
-                                            }) => {
+const Sphere:React.FC<SphereProps> = ({ color, metalness, roughness, emissive, emissiveIntensity, clearcoat, clearcoatRoughness, transmission }:SphereProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
+
+    const normalMap = useMemo(() => {
+        const loader = new THREE.TextureLoader();
+
+        const texture = new THREE.CanvasTexture(new FlakesTexture());
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.x = 10;
+        texture.repeat.y = 6;
+        texture.anisotropy = 16;
+        return texture;
+    }, []);
+
+    const normalScale = new THREE.Vector2(0.15,0.15);
+
 
   useFrame(({ clock }) => {
     // @ts-ignore
-    meshRef.current.rotation.y = clock.getElapsedTime() * 0.1
+    meshRef.current.rotation.y = clock.getElapsedTime() * (-0.1)
   })
   return (
     <mesh ref={meshRef}>
       <sphereGeometry args={[1, 64, 64]} />
         <meshPhysicalMaterial
-            color={color}
-            metalness={metalness}
-            roughness={roughness}
-            emissive={emissive}
-            emissiveIntensity={emissiveIntensity}
             clearcoat={clearcoat}
             clearcoatRoughness={clearcoatRoughness}
+            metalness={metalness}
+            roughness={roughness}
+            color={color}
+            normalMap={normalMap}
+            normalScale={normalScale}
+            emissive={emissive}
+            emissiveIntensity={emissiveIntensity}
             transmission={transmission}
         />
     </mesh>
@@ -104,7 +113,7 @@ function SphereText() {
 
     useFrame(({ clock }) => {
         if (meshRef.current) {
-            meshRef.current.rotation.y = clock.getElapsedTime() * 0.1;
+            meshRef.current.rotation.y = clock.getElapsedTime() * 0.3;
         }
     });
 
@@ -131,21 +140,26 @@ function SphereText() {
     );
 }
 
-
 export default function Echo3DSphere(props: SphereProps) {
   return (
-      <div className="" style={{height: "550px", width: "100%", minWidth: "1000px", backgroundColor: "black"}}>
-        <Canvas camera={{position: [0, 1, 3], fov: 42}}>
-          <ambientLight intensity={0.5}/>
-          <pointLight position={[10, 10, 10]} intensity={1}/>
+      <div className="" style={{height: "550px", width: "100%", minWidth: "1000px", backgroundColor: "white"}}>
+        <Canvas
+            camera={{position: [0, 1, 3], fov: 50}}
+            gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.25 }}
+        >
+        <ambientLight intensity={1}/>
+        <pointLight position={[10, 10, 10]} intensity={1}/>
         <spotLight
           position={[-10, -10, -10]}
           angle={0.15}
           penumbra={1}
           intensity={1}
         />
+
+        <Environment preset={props.env} background />
+
         <Sphere  {...props}/>
-        <SphereText/>
+        <SphereText />
         <OrbitControls enableZoom={false} />
       </Canvas>
     </div>
