@@ -133,6 +133,7 @@ function SphereText() {
                     clearcoat={1}
                     clearcoatRoughness={1}
                     transmission={1}
+                    rotation={[0, 0.1, 0]}
                 />
             </mesh>
             {/*<TexturePreview texture={texture} />*/}
