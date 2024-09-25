@@ -16,7 +16,7 @@ interface SphereProps {
     clearcoat?: number;
     clearcoatRoughness?: number;
     transmission?: number;
-    env: "apartment" | "city" | "dawn" | "forest" | "lobby" | "night" | "park" | "studio" | "sunset" | "warehouse"|undefined;
+    env: "apartment" | "city" | "dawn" | "forest" | "lobby" | "night" | "park" | "studio" | "sunset" | "warehouse";
 }
 
 const Sphere:React.FC<SphereProps> = ({ color, metalness, roughness, emissive, emissiveIntensity, clearcoat, clearcoatRoughness, transmission }:SphereProps) => {
@@ -133,6 +133,7 @@ function SphereText() {
                     clearcoat={1}
                     clearcoatRoughness={1}
                     transmission={1}
+                    rotation={[0, 0.1, 0]}
                 />
             </mesh>
             {/*<TexturePreview texture={texture} />*/}
