@@ -1,7 +1,7 @@
 'use client';
 import React from "react";
 import {Canvas} from "@react-three/fiber";
-import Model from "@/components/Three/Glass/Model";
+import Model from "./Model";
 import {Environment} from "@react-three/drei";
 
 export default function Scene(props:any){
