@@ -133,7 +133,6 @@ function SphereText() {
                     clearcoat={1}
                     clearcoatRoughness={1}
                     transmission={1}
-                    rotation={[0, 0.1, 0]}
                 />
             </mesh>
             {/*<TexturePreview texture={texture} />*/}
@@ -143,7 +142,7 @@ function SphereText() {
 
 export default function Echo3DSphere(props: SphereProps) {
   return (
-      <div className="" style={{height: "550px", width: "100%", minWidth: "1000px", backgroundColor: "white"}}>
+      <div className="" style={{height: "550px", width: "100%", minWidth: "1000px"}}>
         <Canvas
             camera={{position: [0, 1, 3], fov: 50}}
             gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.25 }}
@@ -157,8 +156,7 @@ export default function Echo3DSphere(props: SphereProps) {
           intensity={1}
         />
 
-        <Environment preset={props.env} background />
-
+        <Environment preset={props.env} />
         <Sphere  {...props}/>
         <SphereText />
         <OrbitControls enableZoom={false} />

@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Echo3DSphere from "../components/Echo3dSphere";
-import { MeshPhysicalMaterialProps } from '@react-three/fiber';
-
+import Echo3DSphere from "../components/Three/Echo3dSphere";
 
 enum environment {
     apartment = "apartment",
