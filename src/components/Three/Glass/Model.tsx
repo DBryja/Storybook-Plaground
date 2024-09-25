@@ -22,10 +22,10 @@ export default function Model(materialProps: typeof MeshTransmissionMaterial.def
                 position={[0,0,-0.5]}
                 fontSize={1.2}
                 fontWeight={900}
+                font={"/fonts/Inter-Bold.woff"}
             >
                 Hello World
             </Text>
-            {/*@ts-ignore*/}
             <mesh {...nodes.Torus} ref={mesh} scale={1.3}>
                 <MeshTransmissionMaterial {...materialProps}/>
             </mesh>
